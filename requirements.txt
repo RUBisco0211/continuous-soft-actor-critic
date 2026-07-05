@@ -1,0 +1,24 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+-e ./BenchMARL
+-e ./VectorizedMultiAgentSimulator
+-e ./marl-eval
+
+torch==2.12.1
+torchvision==0.27.1
+torchrl==0.11.1
+tensordict==0.11.0
+numpy==1.26.4
+
+wandb==0.28.0
+hydra-core==1.3.4
+gym==0.26.2
+gym-notices==0.0.8
+pyglet==1.5.27
+matplotlib==3.10.9
+pandas==2.3.3
+seaborn==0.13.2
+scipy==1.15.3
+colorcet==3.2.1
+neptune==1.14.0.post2
+wandb[media]
