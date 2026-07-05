@@ -1,0 +1,7 @@
+runs/
+plot/
+wandb/
+__pycache__/
+*.py[cod]
+.DS_Store
+BenchMARL/examples/plotting/*_navigation_mlp__*/

@@ -5,9 +5,9 @@ defaults:
 # The device for collection (e.g. cuda)
 sampling_device: "cpu"
 # The device for training (e.g. cuda)
-train_device: "cuda" 
+train_device: "cpu" 
 # The device for the replay buffer of off-policy algorithms (e.g. cuda)
-buffer_device:  "cuda"
+buffer_device:  "cpu"
 
 # Whether to share the parameters of the policy within agent groups
 share_policy_params: True
@@ -26,6 +26,8 @@ gamma: 0.99  #0.998 #0.9
 lr: 0.000005
 # The epsilon parameter of the adam optimizer
 adam_eps: 0.000001
+# Extra kwargs for the adam optimizer
+adam_extra_kwargs: {}
 # Clips grad norm if true and clips grad value if false
 clip_grad_norm: True 
 # The value for the clipping, if null no clipping
@@ -85,19 +87,23 @@ off_policy_prb_beta: 0.4
 
 evaluation: True
 # Whether to render the evaluation (if rendering is available)
-render: True
+render: False
 # Frequency of evaluation in terms of collected frames (this should be a multiple of on/off_policy_collected_frames_per_batch)
 evaluation_interval: 120_000
 # Number of episodes that evaluation is run on
 evaluation_episodes: 10 
 # If True, when stochastic policies are evaluated, their deterministic value is taken, otherwise, if False, they are sampled
 evaluation_deterministic_actions: False 
+# If True, seed the environment before evaluation leading to always the same evaluation env being used
+evaluation_static: False
 
 
 # List of loggers to use, options are: wandb, csv, tensorboard, mflow
 loggers: [csv] # [wandb] 
 # Wandb project name
 project_name: "benchmarl"
+# Wandb extra kwargs passed to the WandbLogger
+wandb_extra_kwargs: {}
 # Create a json folder as part of the output in the format of marl-eval
 create_json: True
 
@@ -119,4 +125,5 @@ checkpoint_at_end: False
 # How many checkpoints to keep. As new checkpoints are taken, temporally older checkpoints are deleted to keep this number of
 # checkpoints. The checkpoint at the end is included in this number. Set to `null` to keep all checkpoints.
 keep_checkpoints_num: 3
-
+# Whether to exclude the replay buffers from the checkpoint
+exclude_buffer_from_checkpoint: False
